@@ -2,11 +2,11 @@ const mysql = require('mysql2/promise');
 const env = require('./env');
 
 const pool = mysql.createPool({
-    host: env.DB.HOST,
-    port: env.DB.PORT,
-    user: env.DB.USER,
-    password: env.DB.PASSWORD,
-    database: env.DB.DATABASE,
+    host: env.db.host,
+    port: env.db.port,
+    user: env.db.user,
+    password: env.db.password,
+    database: env.db.database,
     waitForConnections: true,
     connectionLimit: 10,
 });

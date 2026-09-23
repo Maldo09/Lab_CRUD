@@ -14,7 +14,7 @@ function authenticate(req, res, next) {
     const token = header.substring(7);
 
     try {
-        req.user = jwt.verify(token, env.JWT_SECRET);
+        req.user = jwt.verify(token, env.jwt.secret);
         next();
     } catch {
         return res.status(401).json({

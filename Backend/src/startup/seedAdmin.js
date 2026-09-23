@@ -6,7 +6,7 @@ async function seedAdmin() {
     const { name, email, password } = env.admin;
 
     if (!name || !email || !password) {
-        console.log('Seed de admin omitido: ADMIN_NAME/ADMIN_EMAIL/ADMIN_PASSWORD no configurados');
+        console.log('seed de admin omitido: ADMIN_NAME/ADMIN_EMAIL/ADMIN_PASSWORD no configurados');
         return;
     }
 
@@ -15,7 +15,7 @@ async function seedAdmin() {
         [email]
     );
 
-    if (existing.legth) {
+    if (existing.length) {
         console.log('Seed de admin omitido: ya existe un usuario con ese email');
         return;
     }
@@ -30,4 +30,4 @@ async function seedAdmin() {
     console.log(`Usuario de admin creado: ${email}`);
 }
 
-mudule.exports = seedAdmin;
+module.exports = seedAdmin;
