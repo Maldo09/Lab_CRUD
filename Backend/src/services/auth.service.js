@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const pool = require('../config/db');
 const { createToken } = require('../utils/jwt');
-const AppError = require('../utils/appError');
+const AppError = require('../utils/AppError');
 
 async function registerUser({nombre, email, password}) {
     if (!nombre || !email || !password) {
@@ -24,7 +24,7 @@ async function registerUser({nombre, email, password}) {
         [nombre, email, hash, 'cliente']
     );  
 
-    return { id: result.insertId };
+    return { id_usuario: result.insertId };
 }
 
 async function loginUser({email, password}) {

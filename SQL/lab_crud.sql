@@ -1,6 +1,6 @@
 # Esta base de datos, No representa una empresa. Es un laboratorio de datos donde se practican diferentes operaciones CRUD.
 
-CREATE DATABASE IF NOT EXISTS lab_crud;
+CREATE DATABASE IF NOT EXISTS lab_crudcls
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 USE lab_crud;

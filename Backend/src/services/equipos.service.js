@@ -4,7 +4,7 @@ const pool = require('../config/db');
 const AppError = require('../utils/AppError');
 const { UPLOAD_DIR  } = require('../middlewares/upload.middleware');
 
-async function borrarImagenExiste(imagen) {
+async function borrarImagenSiExiste(imagen) {
     if (!imagen) return;
 
     try{
@@ -45,20 +45,20 @@ async function createEquipo({ nombre, marca, modelo }, imagen) {
     return getEquipoById(result.insertId);
 }
 
-async function updateEquipo(id, {nombre, marca, modelo}, imagen) {
-    const actual = await getEquipoById(id)
+async function updateEquipo(id, { nombre, marca, modelo }, imagen) {
+    const actual = await getEquipoById(id);
     const nuevaImagen = imagen || actual.imagen;
 
     const [result] = await pool.execute(
-        'UPDATE equipos SET nombre = ?, marca = ?, imagen = ? WHERE id_equipo = ?',
+        'UPDATE equipos SET nombre = ?, marca = ?, modelo = ?, imagen = ? WHERE id_equipo = ?',
         [nombre, marca || null, modelo || null, nuevaImagen, id]
     );
 
     if (!result.affectedRows) {
-        throw new AppError('Equipo no encotrado', 404);
+        throw new AppError('Equipo no encontrado', 404);
     }
 
-    if (imagen && actual.imagen !== imagen) {
+    if (imagen && actual.imagen && actual.imagen !== imagen) {
         await borrarImagenSiExiste(actual.imagen);
     }
 }
